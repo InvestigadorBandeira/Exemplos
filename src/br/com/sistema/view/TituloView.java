@@ -16,7 +16,7 @@ public class TituloView extends JInternalFrame {
     private JLabel lblConta;
     private JLabel lblValor;
     private JLabel lblData;
-    private JComboBox comboBox;
+    private JComboBox cbConta;
     private JTextField txtData;
     private JTextField txtValor;
     private JScrollPane scrollPane;
@@ -43,19 +43,14 @@ public class TituloView extends JInternalFrame {
 	lblConta.setBounds(10, 11, 130, 25);
 	getContentPane().add(lblConta);
 
+	cbConta = new JComboBox();
+	cbConta.setBounds(150, 12, 225, 25);
+	getContentPane().add(cbConta);
+
 	lblData = new JLabel("Data");
 	lblData.setFont(new Font("Tahoma", Font.BOLD, 12));
 	lblData.setBounds(10, 47, 130, 25);
 	getContentPane().add(lblData);
-
-	lblValor = new JLabel("Valor");
-	lblValor.setFont(new Font("Tahoma", Font.BOLD, 12));
-	lblValor.setBounds(10, 83, 130, 25);
-	getContentPane().add(lblValor);
-
-	comboBox = new JComboBox();
-	comboBox.setBounds(150, 12, 225, 25);
-	getContentPane().add(comboBox);
 
 	txtData = new JTextField();
 	txtData.setHorizontalAlignment(SwingConstants.CENTER);
@@ -64,6 +59,11 @@ public class TituloView extends JInternalFrame {
 	txtData.setBounds(150, 50, 100, 25);
 	getContentPane().add(txtData);
 	txtData.setColumns(10);
+
+	lblValor = new JLabel("Valor");
+	lblValor.setFont(new Font("Tahoma", Font.BOLD, 12));
+	lblValor.setBounds(10, 83, 130, 25);
+	getContentPane().add(lblValor);
 
 	txtValor = new JTextField();
 	txtValor.setText("0,00");

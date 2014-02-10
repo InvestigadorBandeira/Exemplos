@@ -30,6 +30,7 @@ public class ParcelaView extends JFrame {
     private JPanel pnBarraFerramentas;
     private JButton button;
     private JPanel pnTelas;
+    private JPanel panel;
 
     public ParcelaView() {
 	setMinimumSize(new Dimension(620, 420));
@@ -89,6 +90,7 @@ public class ParcelaView extends JFrame {
 						Short.MAX_VALUE))
 			.addContainerGap()));
 	pnTelas.setLayout(null);
+
 	pnBarraFerramentas.setLayout(null);
 
 	button = new JButton("");
@@ -150,10 +152,13 @@ public class ParcelaView extends JFrame {
 
     protected void mntmAdicionaActionPerformed(ActionEvent e) {
 	TituloView view = new TituloView();
+
 	pnTelas.removeAll();
 	pnTelas.updateUI();
-	pnTelas.add(view);
-	view.setVisible(true);
+	// pnTelas.add(view);
+	pnTelas.add(new ParcelaPanelView());
+	pnTelas.updateUI();
+	// view.setVisible(true);
 
 	pnContas.removeAll();
 	montaPanelContas();
