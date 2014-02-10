@@ -148,17 +148,22 @@ public class ParcelaView extends JFrame {
     protected void mntmRemoveActionPerformed(ActionEvent e) {
 	pnContas.removeAll();
 	pnContas.updateUI();
+
+	pnTelas.removeAll();
+	pnTelas.updateUI();
     }
 
     protected void mntmAdicionaActionPerformed(ActionEvent e) {
 	TituloView view = new TituloView();
+	ParcelaPanelView view2 = new ParcelaPanelView();
 
 	pnTelas.removeAll();
 	pnTelas.updateUI();
-	// pnTelas.add(view);
-	pnTelas.add(new ParcelaPanelView());
+	pnTelas.add(view);
+	pnTelas.add(view2);
 	pnTelas.updateUI();
-	// view.setVisible(true);
+	view.setVisible(true);
+	// pnTelas.repaint();
 
 	pnContas.removeAll();
 	montaPanelContas();

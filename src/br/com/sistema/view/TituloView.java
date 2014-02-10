@@ -10,13 +10,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import br.com.vga.mymoney.entity.Conta;
 import br.com.vga.mymoney.view.tables.ParcelaTable;
 
 public class TituloView extends JInternalFrame {
     private JLabel lblConta;
     private JLabel lblValor;
     private JLabel lblData;
-    private JComboBox cbConta;
+    private JComboBox<Conta> cbConta;
     private JTextField txtData;
     private JTextField txtValor;
     private JScrollPane scrollPane;
@@ -43,7 +44,7 @@ public class TituloView extends JInternalFrame {
 	lblConta.setBounds(10, 11, 130, 25);
 	getContentPane().add(lblConta);
 
-	cbConta = new JComboBox();
+	cbConta = new JComboBox<>();
 	cbConta.setBounds(150, 12, 225, 25);
 	getContentPane().add(cbConta);
 

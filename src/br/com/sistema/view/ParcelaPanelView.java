@@ -9,12 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
+import br.com.vga.mymoney.entity.Conta;
 import br.com.vga.mymoney.view.tables.ParcelaTable;
 
 public class ParcelaPanelView extends JPanel {
     private JLabel label;
-    private JComboBox comboBox;
+    private JComboBox<Conta> cbConta;
     private JLabel label_1;
     private JTextField textField;
     private JLabel label_2;
@@ -26,8 +28,11 @@ public class ParcelaPanelView extends JPanel {
     private ParcelaTable parcelaTable;
 
     public ParcelaPanelView() {
+	setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+		TitledBorder.TOP, null, null));
 
 	initComponents();
+	setBounds(30, 30, 560, 360);
     }
 
     private void initComponents() {
@@ -38,9 +43,9 @@ public class ParcelaPanelView extends JPanel {
 	label.setBounds(10, 11, 130, 25);
 	add(label);
 
-	comboBox = new JComboBox();
-	comboBox.setBounds(150, 12, 225, 25);
-	add(comboBox);
+	cbConta = new JComboBox<>();
+	cbConta.setBounds(150, 12, 225, 25);
+	add(cbConta);
 
 	label_1 = new JLabel("Data");
 	label_1.setFont(new Font("Tahoma", Font.BOLD, 12));
