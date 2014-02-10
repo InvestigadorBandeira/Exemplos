@@ -150,6 +150,8 @@ public class ParcelaView extends JFrame {
 
     protected void mntmAdicionaActionPerformed(ActionEvent e) {
 	TituloView view = new TituloView();
+	pnTelas.removeAll();
+	pnTelas.updateUI();
 	pnTelas.add(view);
 	view.setVisible(true);
 
