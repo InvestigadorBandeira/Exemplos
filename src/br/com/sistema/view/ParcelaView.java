@@ -159,7 +159,7 @@ public class ParcelaView extends JFrame {
 
 	pnTelas.removeAll();
 	pnTelas.updateUI();
-	pnTelas.add(view);
+	// pnTelas.add(view);
 	pnTelas.add(view2);
 	pnTelas.updateUI();
 	view.setVisible(true);

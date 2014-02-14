@@ -1,6 +1,9 @@
 package br.com.sistema.view;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -10,6 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import net.java.balloontip.BalloonTip;
+import net.java.balloontip.styles.EdgedBalloonStyle;
+import net.java.balloontip.utils.TimingUtils;
 import br.com.vga.mymoney.entity.Conta;
 import br.com.vga.mymoney.view.tables.ParcelaTable;
 
@@ -95,7 +101,24 @@ public class TituloView extends JInternalFrame {
 	getContentPane().add(txtObservacao);
 
 	btnAdicionarTtulo = new JButton("Adicionar T\u00EDtulo");
+	btnAdicionarTtulo.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent e) {
+		btnAdicionarTtuloActionPerformed(e);
+	    }
+	});
 	btnAdicionarTtulo.setBounds(10, 155, 140, 25);
 	getContentPane().add(btnAdicionarTtulo);
+    }
+
+    protected void btnAdicionarTtuloActionPerformed(ActionEvent e) {
+	EdgedBalloonStyle style = new EdgedBalloonStyle(
+		new Color(255, 253, 245), new Color(64, 64, 64));
+
+	BalloonTip tip = new BalloonTip(btnAdicionarTtulo,
+		" O título 'Compras do Mês' foi salvo com sucesso.", style,
+		false);
+
+	TimingUtils.showTimedBalloon(tip, 3000);
+
     }
 }
