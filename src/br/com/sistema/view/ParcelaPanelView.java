@@ -15,8 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import net.java.balloontip.BalloonTip;
+import net.java.balloontip.BalloonTip.AttachLocation;
+import net.java.balloontip.BalloonTip.Orientation;
 import net.java.balloontip.positioners.BalloonTipPositioner;
-import net.java.balloontip.positioners.BasicBalloonTipPositioner;
 import net.java.balloontip.positioners.LeftAbovePositioner;
 import net.java.balloontip.styles.EdgedBalloonStyle;
 import net.java.balloontip.styles.ModernBalloonStyle;
@@ -129,17 +130,15 @@ public class ParcelaPanelView extends JPanel {
 
 	BalloonTip tip = new BalloonTip(this, texto, modernStyle, false);
 
-	// BalloonTip tip2 = new BalloonTip(this, texto, modernStyle, null,
-	// null,
-	// 0, 0, false);
+	BalloonTip tip2 = new BalloonTip(this, new JLabel(texto), modernStyle,
+		Orientation.LEFT_ABOVE, AttachLocation.WEST, 0, 0, false);
 
 	tip.setPadding(10);
 	tip.setPositioner(positioner);
 
-	((BasicBalloonTipPositioner) tip.getPositioner()).setAttachLocation(
-		0.5f, 1.0f);
-	tip.refreshLocation();
+	tip2.setPadding(50);
 
 	TimingUtils.showTimedBalloon(tip, 2000);
+	TimingUtils.showTimedBalloon(tip2, 2000);
     }
 }
