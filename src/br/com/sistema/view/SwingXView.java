@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -20,9 +21,11 @@ import org.jdesktop.swingx.border.DropShadowBorder;
 public class SwingXView extends JFrame {
     private final JXPanel fundoMenu;
     private JXTaskPaneContainer menuLateral;
+    private JScrollPane spTitulos;
+    private JPanel pnTitulos;
 
     public SwingXView() {
-	setBounds(100, 100, 684, 460);
+	setBounds(100, 100, 760, 460);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	getContentPane().setLayout(null);
 
@@ -49,6 +52,25 @@ public class SwingXView extends JFrame {
 	menu.add(new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
 		"cell 0 3,grow");
 	menu.add(new PanelSaldoContas("Dinheiro", "R$ 0,00"), "cell 0 4,grow");
+
+	spTitulos = new JScrollPane();
+	spTitulos.setBounds(481, 11, 240, 254);
+	getContentPane().add(spTitulos);
+
+	pnTitulos = new JPanel();
+	spTitulos.setViewportView(pnTitulos);
+	pnTitulos.setLayout(new MigLayout("", "[200px]",
+		"[40px][5px][40px][40px][40px]"));
+
+	pnTitulos.add(new PanelSaldoContas("Saldo Global", "R$ 2.487,98"),
+		"cell 0 0,grow");
+	pnTitulos.add(new JPanel(), "cell 0 1,grow");
+	pnTitulos.add(new PanelSaldoContas("Santander", "R$ 2.000,00"),
+		"cell 0 2,grow");
+	pnTitulos.add(new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
+		"cell 0 3,grow");
+	pnTitulos.add(new PanelSaldoContas("Dinheiro", "R$ 0,00"),
+		"cell 0 4,grow");
 
     }
 
@@ -103,5 +125,4 @@ public class SwingXView extends JFrame {
 		    JOptionPane.INFORMATION_MESSAGE);
 	}
     }
-
 }

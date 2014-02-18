@@ -3,8 +3,11 @@ package br.com.sistema.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
@@ -24,6 +27,12 @@ public class PanelSaldoContas extends JPanel {
     }
 
     private void initComponents() {
+	addMouseListener(new MouseAdapter() {
+	    @Override
+	    public void mouseClicked(MouseEvent e) {
+		thisMouseClicked(e);
+	    }
+	});
 	setBackground(new Color(214, 223, 247));
 	setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
 		TitledBorder.TOP, null, null));
@@ -40,4 +49,8 @@ public class PanelSaldoContas extends JPanel {
 	add(lblValor, BorderLayout.CENTER);
     }
 
+    protected void thisMouseClicked(MouseEvent e) {
+	JOptionPane.showMessageDialog(null, " Conta: " + conta + "\n Valor: "
+		+ valor);
+    }
 }

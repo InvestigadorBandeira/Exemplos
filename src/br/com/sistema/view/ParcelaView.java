@@ -12,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.TitledBorder;
@@ -31,6 +32,8 @@ public class ParcelaView extends JFrame {
     private JButton button;
     private JPanel pnTelas;
     private JPanel panel;
+    private JScrollPane scrollPane;
+    private JPanel pnTitulos;
 
     public ParcelaView() {
 	setMinimumSize(new Dimension(620, 420));
@@ -55,40 +58,79 @@ public class ParcelaView extends JFrame {
 	pnTelas.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
 		TitledBorder.TOP, null, null));
 
+	scrollPane = new JScrollPane();
+	scrollPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+		TitledBorder.TOP, null, null));
+
 	GroupLayout groupLayout = new GroupLayout(getContentPane());
-	groupLayout.setHorizontalGroup(groupLayout
-		.createParallelGroup(Alignment.LEADING)
-		.addComponent(pnBarraFerramentas, GroupLayout.DEFAULT_SIZE,
-			600, Short.MAX_VALUE)
-		.addGroup(
-			groupLayout
-				.createSequentialGroup()
-				.addGap(10)
-				.addComponent(pnContas,
-					GroupLayout.PREFERRED_SIZE, 200,
-					GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(pnTelas,
-					GroupLayout.DEFAULT_SIZE, 374,
-					Short.MAX_VALUE).addContainerGap()));
-	groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
-		Alignment.LEADING).addGroup(
-		groupLayout
-			.createSequentialGroup()
+	groupLayout
+		.setHorizontalGroup(groupLayout
+			.createParallelGroup(Alignment.LEADING)
 			.addComponent(pnBarraFerramentas,
-				GroupLayout.PREFERRED_SIZE, 68,
-				GroupLayout.PREFERRED_SIZE)
-			.addPreferredGap(ComponentPlacement.RELATED)
+				GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
 			.addGroup(
 				groupLayout
-					.createParallelGroup(Alignment.LEADING)
+					.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(
+						groupLayout
+							.createParallelGroup(
+								Alignment.LEADING)
+							.addComponent(
+								pnContas,
+								GroupLayout.PREFERRED_SIZE,
+								200,
+								GroupLayout.PREFERRED_SIZE)
+							.addComponent(
+								scrollPane,
+								GroupLayout.PREFERRED_SIZE,
+								240,
+								GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(
+						ComponentPlacement.RELATED)
 					.addComponent(pnTelas,
-						GroupLayout.DEFAULT_SIZE, 277,
+						GroupLayout.DEFAULT_SIZE, 338,
 						Short.MAX_VALUE)
-					.addComponent(pnContas,
-						GroupLayout.DEFAULT_SIZE, 277,
-						Short.MAX_VALUE))
-			.addContainerGap()));
+					.addContainerGap()));
+	groupLayout
+		.setVerticalGroup(groupLayout
+			.createParallelGroup(Alignment.LEADING)
+			.addGroup(
+				groupLayout
+					.createSequentialGroup()
+					.addComponent(pnBarraFerramentas,
+						GroupLayout.PREFERRED_SIZE, 68,
+						GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(
+						ComponentPlacement.RELATED)
+					.addGroup(
+						groupLayout
+							.createParallelGroup(
+								Alignment.LEADING)
+							.addGroup(
+								groupLayout
+									.createSequentialGroup()
+									.addComponent(
+										pnContas,
+										GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(
+										ComponentPlacement.RELATED)
+									.addComponent(
+										scrollPane,
+										GroupLayout.DEFAULT_SIZE,
+										65,
+										Short.MAX_VALUE))
+							.addComponent(
+								pnTelas,
+								GroupLayout.DEFAULT_SIZE,
+								276,
+								Short.MAX_VALUE))
+					.addContainerGap()));
+
+	pnTitulos = new JPanel();
+	scrollPane.setViewportView(pnTitulos);
 	pnTelas.setLayout(null);
 
 	pnBarraFerramentas.setLayout(null);
@@ -141,6 +183,19 @@ public class ParcelaView extends JFrame {
 	pnContas.add(new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
 		"cell 0 3,grow");
 	pnContas.add(new PanelSaldoContas("Dinheiro", "R$ 0,00"),
+		"cell 0 4,grow");
+
+	pnTitulos.setLayout(new MigLayout("", "[205px]",
+		"[40px][1px][40px][40px][40px]"));
+
+	pnTitulos.add(new PanelSaldoContas("Saldo Global", "R$ 2.487,98"),
+		"cell 0 0,grow");
+	pnTitulos.add(new JPanel(), "cell 0 1,grow");
+	pnTitulos.add(new PanelSaldoContas("Santander", "R$ 2.000,00"),
+		"cell 0 2,grow");
+	pnTitulos.add(new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
+		"cell 0 3,grow");
+	pnTitulos.add(new PanelSaldoContas("Dinheiro", "R$ 0,00"),
 		"cell 0 4,grow");
 
     }
