@@ -2,6 +2,8 @@ package br.com.sistema.view;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.math.BigDecimal;
+import java.util.Calendar;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
@@ -18,11 +20,15 @@ import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
+import br.com.vga.mymoney.entity.Conta;
+import br.com.vga.mymoney.entity.Titulo;
+import br.com.vga.mymoney.view.components.PanelTitulo;
+
 public class SwingXView extends JFrame {
     private final JXPanel fundoMenu;
     private JXTaskPaneContainer menuLateral;
-    private JScrollPane spTitulos;
-    private JPanel pnTitulos;
+    private final JScrollPane spTitulos;
+    private final JPanel pnTitulos;
 
     public SwingXView() {
 	setBounds(100, 100, 760, 460);
@@ -62,8 +68,16 @@ public class SwingXView extends JFrame {
 	pnTitulos.setLayout(new MigLayout("", "[200px]",
 		"[40px][5px][40px][40px][40px]"));
 
-	pnTitulos.add(new PanelSaldoContas("Saldo Global", "R$ 2.487,98"),
-		"cell 0 0,grow");
+	Conta conta = new Conta();
+	conta.setNome("Santander");
+	Titulo t1, t2, t3;
+	t1 = new Titulo();
+	t1.setConta(conta);
+	t1.setData(Calendar.getInstance());
+	t1.setDescricao("descrição");
+	t1.setValor(new BigDecimal("0.0"));
+
+	pnTitulos.add(new PanelTitulo(t1), "cell 0 0,grow");
 	pnTitulos.add(new JPanel(), "cell 0 1,grow");
 	pnTitulos.add(new PanelSaldoContas("Santander", "R$ 2.000,00"),
 		"cell 0 2,grow");
