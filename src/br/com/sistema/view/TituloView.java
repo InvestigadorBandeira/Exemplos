@@ -102,6 +102,7 @@ public class TituloView extends JInternalFrame {
 
 	btnAdicionarTtulo = new JButton("Adicionar T\u00EDtulo");
 	btnAdicionarTtulo.addActionListener(new ActionListener() {
+	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		btnAdicionarTtuloActionPerformed(e);
 	    }

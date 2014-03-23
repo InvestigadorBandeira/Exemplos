@@ -1,5 +1,6 @@
 package br.com.sistema.view;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -22,16 +23,17 @@ import org.jdesktop.swingx.border.DropShadowBorder;
 
 import br.com.vga.mymoney.entity.Conta;
 import br.com.vga.mymoney.entity.Titulo;
-import br.com.vga.mymoney.view.components.PanelTitulo;
 
 public class SwingXView extends JFrame {
     private final JXPanel fundoMenu;
     private JXTaskPaneContainer menuLateral;
-    private final JScrollPane spTitulos;
-    private final JPanel pnTitulos;
+    private final JPanel pnGrupos;
+    private final JLabel lblSaldoGlobal;
+    private final JPanel pnBancos;
+    private final JPanel pnBancosContas;
 
     public SwingXView() {
-	setBounds(100, 100, 760, 460);
+	setBounds(100, 100, 760, 443);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	getContentPane().setLayout(null);
 
@@ -44,29 +46,52 @@ public class SwingXView extends JFrame {
 	fundoMenu.add(menuLateral);
 	getContentPane().add(fundoMenu);
 
-	JPanel menu = new JPanel();
-	menu.setBounds(271, 11, 200, 411);
-	getContentPane().add(menu);
-	menu.setLayout(new MigLayout("", "[200px]",
+	JPanel pnMenu = new JPanel();
+	pnMenu.setBounds(271, 11, 200, 411);
+	getContentPane().add(pnMenu);
+	pnMenu.setLayout(new MigLayout("", "[200px]",
 		"[40px][5px][40px][40px][40px]"));
 
-	menu.add(new PanelSaldoContas("Saldo Global", "R$ 2.487,98"),
+	pnMenu.add(new PanelSaldoContas("Saldo Global", "R$ 2.487,98"),
 		"cell 0 0,grow");
-	menu.add(new JPanel(), "cell 0 1,grow");
-	menu.add(new PanelSaldoContas("Santander", "R$ 2.000,00"),
+	pnMenu.add(new JPanel(), "cell 0 1,grow");
+	pnMenu.add(new PanelSaldoContas("Santander", "R$ 2.000,00"),
 		"cell 0 2,grow");
-	menu.add(new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
+	pnMenu.add(new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
 		"cell 0 3,grow");
-	menu.add(new PanelSaldoContas("Dinheiro", "R$ 0,00"), "cell 0 4,grow");
+	pnMenu.add(new PanelSaldoContas("Dinheiro", "R$ 0,00"), "cell 0 4,grow");
 
-	spTitulos = new JScrollPane();
-	spTitulos.setBounds(481, 11, 240, 254);
-	getContentPane().add(spTitulos);
+	pnGrupos = new JPanel();
+	pnGrupos.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+		TitledBorder.TOP, null, null));
+	pnGrupos.setBounds(481, 11, 200, 383);
+	getContentPane().add(pnGrupos);
+	pnGrupos.setLayout(new MigLayout("", "[200px,grow]",
+		"[40px][5px][140px][40px]"));
 
-	pnTitulos = new JPanel();
-	spTitulos.setViewportView(pnTitulos);
-	pnTitulos.setLayout(new MigLayout("", "[200px]",
-		"[40px][5px][40px][40px][40px]"));
+	lblSaldoGlobal = new JLabel(" Saldo Global");
+	lblSaldoGlobal.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+	pnGrupos.add(new PanelSaldoContas("Saldo Global", "R$ 2.487,98"),
+		"cell 0 0,grow");
+
+	pnBancos = new JPanel();
+	pnGrupos.add(pnBancos, "cell 0 2,grow");
+	pnBancos.setLayout(new BorderLayout(0, 0));
+
+	pnBancos.add(new PanelSaldoContas(" BANCOS", "R$ 2.487,98"),
+		BorderLayout.CENTER);
+
+	pnBancosContas = new JPanel();
+	pnBancosContas.setLayout(new MigLayout("", "[200px]", "[40px][40px]"));
+
+	pnBancosContas.add(new PanelSaldoContas("Santander", "R$ 2.000,00"),
+		"cell 0 0,grow");
+	pnBancosContas.add(
+		new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
+		"cell 0 1,grow");
+
+	pnBancos.add(pnBancosContas, BorderLayout.SOUTH);
 
 	Conta conta = new Conta();
 	conta.setNome("Santander");
@@ -76,15 +101,6 @@ public class SwingXView extends JFrame {
 	t1.setData(Calendar.getInstance());
 	t1.setDescricao("descrição");
 	t1.setValor(new BigDecimal("0.0"));
-
-	pnTitulos.add(new PanelTitulo(t1), "cell 0 0,grow");
-	pnTitulos.add(new JPanel(), "cell 0 1,grow");
-	pnTitulos.add(new PanelSaldoContas("Santander", "R$ 2.000,00"),
-		"cell 0 2,grow");
-	pnTitulos.add(new PanelSaldoContas("Banco do Brasil", "R$ 487,98"),
-		"cell 0 3,grow");
-	pnTitulos.add(new PanelSaldoContas("Dinheiro", "R$ 0,00"),
-		"cell 0 4,grow");
 
     }
 

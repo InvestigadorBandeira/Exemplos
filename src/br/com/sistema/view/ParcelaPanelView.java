@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
@@ -23,7 +22,6 @@ import net.java.balloontip.styles.EdgedBalloonStyle;
 import net.java.balloontip.styles.ModernBalloonStyle;
 import net.java.balloontip.utils.TimingUtils;
 import br.com.vga.mymoney.entity.Conta;
-import br.com.vga.mymoney.view.tables.ParcelaTable;
 
 public class ParcelaPanelView extends JPanel {
     private JLabel label;
@@ -32,11 +30,9 @@ public class ParcelaPanelView extends JPanel {
     private JTextField textField;
     private JLabel label_2;
     private JTextField txtValor;
-    private JScrollPane scrollPane;
     private JLabel label_3;
     private JTextField txtObservacao;
     private JButton btnAdicionar;
-    private ParcelaTable parcelaTable;
 
     public ParcelaPanelView() {
 	setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
@@ -97,15 +93,9 @@ public class ParcelaPanelView extends JPanel {
 	txtObservacao.setBounds(150, 122, 394, 25);
 	add(txtObservacao);
 
-	scrollPane = new JScrollPane();
-	scrollPane.setBounds(10, 191, 534, 120);
-	add(scrollPane);
-
-	parcelaTable = new ParcelaTable();
-	scrollPane.setViewportView(parcelaTable);
-
 	btnAdicionar = new JButton("Adicionar T\u00EDtulo");
 	btnAdicionar.addActionListener(new ActionListener() {
+	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		btnAdicionarActionPerformed(e);
 	    }
